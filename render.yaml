@@ -1,0 +1,25 @@
+# Render Blueprint — optional; you can also create the service by hand in the dashboard.
+services:
+  - type: web
+    name: job-manager
+    runtime: node
+    plan: free
+    region: frankfurt          # closest Render region to your Supabase project (Ireland)
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /login
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: SESSION_SECRET
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: ALLOWED_ORIGIN
+        value: https://devitech.us,https://www.devitech.us

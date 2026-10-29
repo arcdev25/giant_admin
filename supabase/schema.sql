@@ -6,6 +6,7 @@ create table if not exists public.jobs (
   location         text not null default 'Remote',
   type             text not null default 'Full-time',
   about_us         text not null default '',
+  about_role       text not null default '',
   responsibilities text[] not null default '{}',   -- What you'll do
   requirements     text[] not null default '{}',   -- What we're looking for
   nice_to_have     text[] not null default '{}',   -- Nice to have

@@ -34,10 +34,20 @@ Set in `.env.local` / Vercel:
 
 Change the password before going live if it was ever shared in plain text.
 
-## 4. Deploy (Vercel)
+## 4. Deploy (Render, free)
 
-Push this folder to its own Git repo, import it in Vercel, add the env vars above plus
-`ALLOWED_ORIGIN=https://your-company-site.com`, deploy.
+Push this folder to its own Git repo, then in Render: New → Web Service → pick the repo.
+
+- Build command: `npm install && npm run build`
+- Start command: `npm start`
+- Instance type: Free
+- Environment: `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`, `SUPABASE_URL`,
+  `SUPABASE_SERVICE_ROLE_KEY`, `ALLOWED_ORIGIN=https://devitech.us,https://www.devitech.us`
+
+(`render.yaml` describes the same setup if you prefer a Blueprint.) The free service sleeps after ~15 min
+idle, so the first request can take up to a minute. Pinging `/api/jobs/list` every 10 minutes
+(e.g. UptimeRobot, free) keeps it awake and also stops Supabase's free project from pausing.
+Vercel works too — it needs no changes.
 
 ## 5. Connect the company website
 

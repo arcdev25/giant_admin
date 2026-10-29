@@ -15,6 +15,7 @@ export default function JobForm({ job }) {
     location: job?.location || 'Remote',
     type: job?.type || JOB_TYPES[0],
     about_us: job?.about_us || '',
+    about_role: job?.about_role || '',
     responsibilities: lines(job?.responsibilities),
     requirements: lines(job?.requirements),
     nice_to_have: lines(job?.nice_to_have),
@@ -87,7 +88,12 @@ export default function JobForm({ job }) {
 
         <div className="field">
           <label>About us</label>
-          <textarea rows={4} value={f.about_us} onChange={set('about_us')} placeholder="A short intro about the company and this role." />
+          <textarea rows={5} value={f.about_us} onChange={set('about_us')} placeholder="A short intro about the company. Press Enter for new paragraphs." />
+        </div>
+
+        <div className="field">
+          <label>About the role</label>
+          <textarea rows={5} value={f.about_role} onChange={set('about_role')} placeholder="What this role is about. Press Enter for new paragraphs." />
         </div>
 
         {listField('responsibilities', "What you'll do", 'Own the growth product roadmap\nRun A/B experiments')}
